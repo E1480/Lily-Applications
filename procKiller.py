@@ -38,7 +38,7 @@ class Prockiller(ctk.CTk):
 
     def _findPID(self):
         if self.entry.get() == "":
-            self._message("Please Enter something...")
+            self._message("Please Enter PID...")
         else:
             pid = int(self.entry.get())
             try:
@@ -50,7 +50,7 @@ class Prockiller(ctk.CTk):
 
     def _kill(self):
         if self.entry.get() == "":
-            self._message("Please Enter something...")
+            self._message("Please Enter PID...")
         else:
             pid = int(self.entry.get())
             try:
@@ -63,3 +63,7 @@ class Prockiller(ctk.CTk):
     def _message(self, message):
         log = datetime.now().strftime("%Y/%m/%d | %H:%M.%S")
         ctk.CTkLabel(self.textFrame, text=f"[{log}]  {message}", anchor=ctk.W, height=10).pack(fill=ctk.X, expand=True, padx=1, pady=1)
+
+
+if __name__ == "__main__":
+    Prockiller()
