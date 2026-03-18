@@ -4,9 +4,13 @@ Just some applications for fun
 
 > [!NOTE]
 > All applications were made using customtkinter
-## Run
 
-To run this project you can run the applications individually or just run `main.py`
+
+## Get Started
+
+clone the repo ```git clone https://github.com/E1480/Lily-Applications.git```
+<br><br>
+and Run:
 
 ```cmd
  uv run main.py
