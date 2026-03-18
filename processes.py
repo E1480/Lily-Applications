@@ -1,17 +1,28 @@
 import customtkinter as ctk
 from tkinter import ttk
 import psutil
+import CTkMenuBar as MenuBar
+from dataclasses import dataclass
+from fuzzysearch import find_near_matches
 
 def _addPID(master):
     from os import getpid  # noqa: F811
     ctk.CTkLabel(master, text=f"PID: {getpid()}").pack(side=ctk.TOP, anchor=ctk.NE, padx=5)
 
+@dataclass
+class PROCESSES:
+    PID : int
+    NAME : str
 
 class ProcTree(ctk.CTk):
     def __init__(self, fg_color = None, **kwargs):
         super().__init__(fg_color, **kwargs)
+        self.processes : list[PROCESSES] = []
+        self._procs : list = []
+
         self.title("Process")
         self.geometry("500x400")
+        # self._menu()
 
         self.processTree = ctk.CTkFrame(self)
         self.processTree.pack(fill=ctk.BOTH, expand=True)
@@ -33,6 +44,17 @@ class ProcTree(ctk.CTk):
         _addPID(self)
         self.mainloop()
     
+    def _menu(self):
+        menubar = MenuBar.CTkMenuBar(self)
+
+        sort_menu = menubar.add_cascade("Sort")
+        sort_menu_dropDown = MenuBar.CustomDropdownMenu(sort_menu)
+        sort_menu_dropDown.add_option("Name", self._sort())
+        sort_menu_dropDown.add_option("PID", lambda: print("PID"))
+
+    def _sort(self):
+        self._procs = sorted(self._procs)
+
     def _addActionFrame(self):
         self.actionFrame = ctk.CTkFrame(self)
         self.actionFrame.pack(fill=ctk.BOTH)
@@ -55,19 +77,38 @@ class ProcTree(ctk.CTk):
         ctk.CTkButton(self.actionFrame, text="Search", command=self._search).pack(pady=5)
 
     def _search(self):
-        if self.Pid.get() != "":
-            for item in self.tree.get_children():
-                if self.tree.item(item, "text") == int(self.Pid.get()):
-                    self.tree.selection_set(item)
-                    self.tree.see(item)
-                    break
-        elif self.procName.get() != "":
-            for item in self.tree.get_children():
-                if str(self.tree.item(item, "values")[0]).lower() == self.procName.get().lower():
-                    self.tree.selection_set(item)
-                    self.tree.see(item)
-                    break
+        query = self.procName.get()
+        results = []
+        try:
+            for p in self.processes:
+                if find_near_matches(query, p.NAME, max_l_dist=1):
+                    results.append(p)
+        except Exception as e:  # noqa: F841
+            pass
 
+        if self.Pid.get() != "":
+            matched_pids = {p.PID for p in self.processes if str(p.PID) == self.Pid.get()}
+            matched_items = []
+
+            for item in self.tree.get_children():
+                if self.tree.item(item, "text") in matched_pids:
+                    matched_items.append(item)
+
+            if matched_items:
+                self.tree.selection_set(matched_items)
+                self.tree.see(matched_items[0])
+
+        elif self.procName.get() != "":
+            matched_names = {p.NAME for p in results}
+            matched_items = []
+
+            for item in self.tree.get_children():
+                if self.tree.item(item, "values")[0] in matched_names:
+                    matched_items.append(item)
+
+            if matched_items:
+                self.tree.selection_set(matched_items)
+                self.tree.see(matched_items[0])
 
     def _addTree(self):
         style = ttk.Style()
@@ -108,6 +149,7 @@ class ProcTree(ctk.CTk):
     def _loadChunk(self, index, chunk_size=10):
         for p in self._procs[index:index + chunk_size]:
             try:
+                self.processes.append(PROCESSES(p.info["pid"],p.info["name"]))
                 self.tree.insert("", ctk.END, text=p.info["pid"], values=(p.info["name"], p.info["status"]))
             except psutil.NoSuchProcess:
                 pass
@@ -116,8 +158,5 @@ class ProcTree(ctk.CTk):
         if next_index < len(self._procs):
             self.after(10, lambda: self._loadChunk(next_index))  # load next chunk after 10ms
 
-
 if __name__ == "__main__":
-    # all_pids = psutil.pids()
-    # print(all_pids)
-    ProcTree()
+    app = ProcTree()
