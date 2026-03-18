@@ -1,8 +1,18 @@
 # Lily Applications
 
-I don't really know what to add Here
+Just some applications for fun
 
-Just try them I don't really know what I did
+> [!NOTE]
+> All applications were made using customtkinter
+## Run
 
-just use uv
+To run this project you can run the applications individually or just run `main.py`
 
+```cmd
+ uv run main.py
+```
+
+# Applications
+- [Lily.py](docs/lily.md)
+- [processes.py](docs/processes.md)
+- [procKiller.py](docs/procKiller.md)

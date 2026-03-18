@@ -7,5 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "ctkmenubar>=0.9",
     "customtkinter>=5.2.2",
+    "fuzzysearch>=0.8.1",
+    "pillow>=12.1.1",
     "psutil>=7.2.2",
 ]

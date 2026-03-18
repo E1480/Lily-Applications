@@ -85,7 +85,7 @@ class Lily(ctk.CTk):
             logger.log(logging.ERROR, f"{e}")
     
     def _addButtons(self):
-        for i in self.apps:
+        for i in self.apps: 
             def _run(app=i):
                 logger.log(logging.DEBUG, f"RUNNING : {app[0]}")
                 proc = Popen(["uv", "run", f"{app[1]}"])
