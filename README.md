@@ -1,5 +1,5 @@
 # Lily Applications
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
 Just some applications for fun
 
 > [!NOTE]
