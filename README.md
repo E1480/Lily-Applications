@@ -13,10 +13,15 @@ Just some applications for fun
 
 clone the repo ```git clone https://github.com/E1480/Lily-Applications```
 <br><br>
+Download the requirements:
+```nushell
+~> uv pip install -r requirements.txt
+```
+<br><br>
 and Run:
 
-```cmd
- uv run main.py
+```nushell
+ ~> uv run main.py
 ```
 
 # Applications
