@@ -1,13 +1,10 @@
-from procKiller import Prockiller
-from processes import ProcTree
-from lily import Lily
-
+from src import lily, procKiller, processes
 from multiprocessing import Process
 
 if __name__ == "__main__":
-    lily = Process(target=Lily)
-    procKill = Process(target=Prockiller)
-    proc = Process(target=ProcTree)
+    lily = Process(target=lily.Lily)
+    procKill = Process(target=procKiller.Prockiller)
+    proc = Process(target=processes.ProcTree)
 
     lily.start()
     procKill.start()
