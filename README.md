@@ -1,8 +1,7 @@
 # Lily Applications
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
-![Static Badge](https://img.shields.io/badge/uv-0.8.11-violet?logo=uv)
-[![Static Badge](https://img.shields.io/badge/python-3.13-blue?logo=python)](wwww.python.org)
-
+[![Static Badge](https://img.shields.io/badge/uv-0.8.11-violet?logo=uv)](https://github.com/astral-sh/uv)
+[![Static Badge](https://img.shields.io/badge/python-3.13-blue?logo=python)](https://www.python.org/)
 <br>
 Just some applications for fun
 
