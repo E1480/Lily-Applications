@@ -14,7 +14,7 @@ Just some applications for fun
 
 ## Get Started
 
-clone the repo ```git clone https://github.com/E1480/Lily-Applications.git```
+clone the repo ```git clone https://github.com/E1480/Lily-Applications```
 <br><br>
 and Run:
 

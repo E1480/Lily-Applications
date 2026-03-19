@@ -1,6 +1,6 @@
-from .processes import ProcTree
-from .lily import Lily
-from .procKiller import Prockiller
+from procKiller import Prockiller
+from processes import ProcTree
+from lily import Lily
 
 from multiprocessing import Process
 

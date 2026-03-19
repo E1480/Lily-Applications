@@ -9,7 +9,10 @@ logger = logging.getLogger("Lily")
 logger.setLevel(logging.DEBUG)
 
 Lhandler = logging.StreamHandler()
-Lformat = logging.Formatter('%(asctime)s :: <%(levelname)s> :: %(name)s :| %(message)s',datefmt="[%Y/%M/%D] %H:%M:%S")
+Lformat = logging.Formatter(
+    '%(asctime)s :: <%(levelname)s> :: %(name)s :| %(message)s',
+    datefmt="[%Y/%M/%D] %H:%M:%S"
+    )
 Lhandler.setFormatter(Lformat)
 logger.addHandler(Lhandler)
 
