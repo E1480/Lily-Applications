@@ -21,7 +21,7 @@ Download the requirements:
 and Run:
 
 ```nushell
- ~> uv run main.py
+~> uv run main.py
 ```
 
 # Applications

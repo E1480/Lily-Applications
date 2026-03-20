@@ -4,7 +4,12 @@ from PIL import Image, ImageDraw
 import webbrowser
 
 class Credits(ctk.CTkToplevel):
-    
+
+    """You don't need to know what this is
+    I mean just know that this is a CTkTopLevel that's it lmao
+     and if you have time you can read if you want.
+    """
+
     def __init__(self, *args, fg_color=None, image_path="src/img/349187009_644874610828926_2501659095251803168_n.jpg", **kwargs):
 
         super().__init__(*args, fg_color=fg_color, **kwargs)
@@ -43,8 +48,10 @@ class Credits(ctk.CTkToplevel):
 
 
 def _addCredits(master: Any):
+    
     def _run():
         Credits(master)
+
     import CTkMenuBar as MenuBar
     menu = MenuBar.CTkMenuBar(master)
     infoMenu = menu.add_cascade("info")
@@ -53,13 +60,18 @@ def _addCredits(master: Any):
 
 def __wrapper__(**kwargs):
     required = {'master', 'menu'}
+    
     if not required.issubset(kwargs):
         raise ValueError("Missing required fields")
+    
     import CTkMenuBar as MenuBar
     def _addCreditsDropDown(master: Any, menu: MenuBar):
+        
         def _run():
             Credits(master)
+        
         infoMenu = menu.add_cascade("info")
         infoMenuDrop = MenuBar.CustomDropdownMenu(infoMenu)
         infoMenuDrop.add_option("Credits", _run)
+    
     _addCreditsDropDown(kwargs.get("master"), kwargs.get("menu"))

@@ -1,6 +1,8 @@
 import customtkinter as ctk
 import psutil
 from datetime import datetime
+
+# Just making sure realtive import works
 if __name__ == "__main__":
     from info import _addCredits
 else:

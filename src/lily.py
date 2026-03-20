@@ -1,10 +1,13 @@
 import logging
 import customtkinter as ctk
 import CTkMenuBar as MenuBar
+
+# Just making sure realtive import works
 if __name__ == "__main__":
     from info import __wrapper__
 else:
     from .info import __wrapper__
+
 from os import curdir, listdir, path
 from subprocess import Popen
 from tkinter import filedialog as fd

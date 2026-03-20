@@ -2,10 +2,13 @@ import customtkinter as ctk
 from tkinter import ttk
 import psutil
 import CTkMenuBar as MenuBar
+
+# Just making sure realtive import works
 if __name__ == "__main__":
     from info import _addCredits
 else:
     from .info import _addCredits
+
 from dataclasses import dataclass
 from fuzzysearch import find_near_matches
 
